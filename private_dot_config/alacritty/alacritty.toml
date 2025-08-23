@@ -1,0 +1,18 @@
+general.import = [
+  # "~/.config/alacritty/catppuccin-macchiato.toml",
+  "~/.config/alacritty/tokyonight_night.toml",
+]
+
+[window]
+decorations = "None"
+dynamic_padding = true
+padding = { x = 4, y = 4 }
+
+[font]
+normal = { family = "Go Mono" }
+size = 10
+
+[keyboard]
+bindings = [
+  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+]

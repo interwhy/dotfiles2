@@ -19,16 +19,6 @@ local lsp_mappings = {
 
 which_key.add(lsp_mappings)
 
--- TODO: why doesn't this work?
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "*.c", "*.cc", "*.cpp", "*.cxx", "*.h", "*.hpp", "*.hxx", "*.cppm", "*.ixx" },
-  callback = function(args)
-    which_key.add {
-      { "<leader>lf", ":ClangFormat<CR>", desc = "Run clang-format" },
-    }
-  end
-})
-
 local debug_mappings = {
   { "<F5>", function() require('dap').continue() end, desc = "Continue", mode = "n" },
   { "<F10>", function() require('dap').step_over() end, desc = "Step over", mode = "n" },
@@ -42,15 +32,6 @@ local debug_mappings = {
 }
 
 which_key.add(debug_mappings)
-
-local non_lsp_mappings = {
-  { "<C-d>", "<C-d>zz", desc = "Half page down and center" },
-  { "<C-u>", "<C-u>zz", desc = "Half page up and center" },
-  { "N", "Nzzzv", desc = "Previous search result and center" },
-  { "n", "nzzzv", desc = "Next search result and center" },
-}
-
-which_key.add(non_lsp_mappings)
 
 local telescope_mappings = {
   { "<leader>f", group = "Find" },
@@ -72,4 +53,15 @@ local telescope_mappings = {
 }
 
 which_key.add(telescope_mappings)
+
+local persistence = require("persistence")
+local persistence_mappings = {
+  { "<leader>q", group = "Persistence" },
+  { "<leader>qq", function() persistence.load() end, desc = "Load the session for the current directory" },
+  { "<leader>qs", function() persistence.select() end, desc = "Select a session" },
+  { "<leader>ql", function() persistence.load({ last = true }) end, desc = "Load the last session" },
+  { "<leader>qd", function() persistence.stop() end, desc = "Stop persistence, do not save this session on exit" },
+}
+
+which_key.add(persistence_mappings)
 

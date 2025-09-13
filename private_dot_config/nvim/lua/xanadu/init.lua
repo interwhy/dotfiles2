@@ -6,5 +6,6 @@ require("xanadu.set")
 require("xanadu.remap")
 require("xanadu.command")
 
-vim.cmd("colorscheme tokyonight-night")
+vim.g.everforest_background = "hard"
+vim.cmd("colorscheme everforest")
 
